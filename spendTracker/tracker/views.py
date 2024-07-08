@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from .models import *
 
-# Create your views here.
+class ExpenseListView(ListView):
+    model = Tracker
+    template_name = 'home.html' 
+    context_object_name = 'expenses'
+    ordering = ['date']
 
-def index(request):
-    return render(request, 'index.html')
