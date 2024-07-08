@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block content %}
-
+<h1 class="text-4xl mb-6 p-3 text-center font-semibold text-green-800">Dashboard</h1>
 <div class="grid grid-cols-12 gap-4 mt-8">
-    <div class="col-span-5 ">
-        <h1 class="text-3xl bg-green-300 mb-6 p-3 font-semibold text-green-800">Expenses By Category</h1>
+    <div class="col-span-5">
+        <h1 class="text-3xl bg-green-900 text-center mb-6 p-3 font-semibold text-white">Expenses By Category</h1>
         <div class="chart-wrapper" style="height: calc(90vh - 200px); margin-top: 100px;">
                 <canvas id="categoryExpenseChart"></canvas>
             </div>
@@ -13,14 +13,14 @@
     </div>
     <div class="col-span-7 grid grid-rows-2 gap-4">
         <div class="row-span-1">
-            <h1 class="text-3xl bg-green-300 mb-6 p-3 font-semibold text-green-800">Category Trends Over Time</h1>
+            <h1 class="text-3xl bg-green-900 mb-6 p-3 text-center font-semibold text-white">Category Trends Over Time</h1>
         <div class="chart-wrapper" style="height: 35vh; ">
             <canvas id="categoryTrendsChart"></canvas>
         </div>
             
         </div>
         <div class="row-span-1">
-            <h1 class="text-3xl bg-green-300 mb-6 p-3 font-semibold text-green-800">Yearly Expense Summary</h1>
+            <h1 class="text-3xl bg-green-900 mb-6 p-3 text-center font-semibold text-white">Yearly Expense Summary</h1>
             <div class="chart-wrapper" style="height: 35vh;">
                 <canvas id="yearlyExpenseChart"></canvas>
             </div>
@@ -81,7 +81,7 @@
                 datasets: [{
                     label: 'Yearly Expense Summary',
                     data: yearlyExpenseData.data,
-                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    backgroundColor: 'rgba(54, 162, 235, 1)',
                     borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1
                 }]
@@ -110,12 +110,12 @@
                 datasets: [{
                     data: categoryExpenseData.data,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
