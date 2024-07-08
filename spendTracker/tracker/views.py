@@ -1,6 +1,6 @@
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import *
+from .models import Tracker
 
 class ExpenseListView(ListView):
     model = Tracker
@@ -10,17 +10,16 @@ class ExpenseListView(ListView):
 
 class ExpenseCreateView(CreateView):
     model = Tracker
-    context_object_name = 'expenses'
-    fields = ['category','amount','title','date','payment_method']
+    fields = ['category', 'amount', 'title', 'date', 'payment_method']
     template_name = 'form.html'
-    success_url = '/'    
+    success_url = reverse_lazy('home') 
 
 class ExpenseUpdateView(UpdateView):
     model = Tracker
-    context_object_name = 'expense'
-    fields = ['category','amount','title','date','payment_method']
+    fields = ['category', 'amount', 'title', 'date', 'payment_method']
     template_name = 'form.html'
-    success_url = '/'    
+    success_url = reverse_lazy('home')  
 
-
-
+class ExpenseDeleteView(DeleteView):
+    model = Tracker
+    success_url = reverse_lazy('home') 
