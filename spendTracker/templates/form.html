@@ -70,4 +70,28 @@
     </div>
 </div>
 
+<h1 class="mb-6 mt-8 text-3xl font-semibold text-green-800">Recent Added Expenses</h1>
+
+{% for expense in recent_expenses %}
+<div class="bg-white border border-gray-200 rounded-lg mt-8 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div class="p-5">
+        <div class="flex justify-end items-end">
+            <div class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                {{ expense.category }}
+            </div>
+        </div>
+
+        <h5 class="mb-3 mt-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ expense.amount }} BDT.</h5>
+
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ expense.title }}</p>
+
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Payment method : {{ expense.payment_method }}</p>
+
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Date : {{ expense.date }} </p>
+
+        
+    </div>
+</div>
+{% endfor %}
+
 {% endblock content %}
