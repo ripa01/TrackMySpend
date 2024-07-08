@@ -25,6 +25,7 @@ class ExpenseUpdateView(UpdateView):
     model = Tracker
     fields = ['category', 'amount', 'title', 'date', 'payment_method']
     template_name = 'form.html'
+    context_object_name = 'expense'
     success_url = reverse_lazy('home')  
 
     def get_context_data(self, **kwargs):

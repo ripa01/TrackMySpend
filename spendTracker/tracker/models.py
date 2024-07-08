@@ -10,8 +10,7 @@ class Tracker(models.Model):
     date = models.DateField()
     payment_method = models.CharField(max_length=50, choices=[
         ('Cash', 'Cash'), 
-        ('Credit Card', 'Credit Card'), 
-        ('Debit Card', 'Debit Card'), 
+        ('Card', 'Card'), 
         ('Online Payment', 'Online Payment'),
          ('Bank Transfer', 'Bank Transfer')
     ])
