@@ -12,7 +12,7 @@ class ExpenseListView(ListView):
     template_name = 'home.html' 
     context_object_name = 'expenses'
     ordering = ['date']
-    paginate_by = 10
+    paginate_by = 8
 
 class ExpenseCreateView(CreateView):
     model = Tracker
@@ -50,37 +50,37 @@ class ExpenseDeleteView(DeleteView):
 class ExpenseChartView(TemplateView):
     template_name = 'dashboard.html'
 
-    def get_category_trends_data(self):
-        data = {
-            'labels': [],
-            'datasets': []
-        }
+    # def get_category_trends_data(self):
+    #     data = {
+    #         'labels': [],
+    #         'datasets': []
+    #     }
 
-        categories = Tracker.objects.values('category').distinct()
+    #     categories = Tracker.objects.values('category').distinct()
 
-        for category in categories:
-            category_name = category['category']
-            expenses = Tracker.objects.filter(category=category_name) \
-                                      .order_by('date') \
-                                      .values_list('date', 'amount')
+    #     for category in categories:
+    #         category_name = category['category']
+    #         expenses = Tracker.objects.filter(category=category_name) \
+    #                                   .order_by('date') \
+    #                                   .values_list('date', 'amount')
 
-            dataset = {
-                'label': category_name,
-                'data': [],
-                'fill': False,
-                'borderColor': 'rgb(75, 192, 192)',
-                'lineTension': 0.1
-            }
+    #         dataset = {
+    #             'label': category_name,
+    #             'data': [],
+    #             'fill': False,
+    #             'borderColor': 'rgb(75, 192, 192)',
+    #             'lineTension': 0.1
+    #         }
 
-            for expense in expenses:
-                dataset['data'].append({
-                    'x': expense[0].strftime('%Y-%m-%d'),
-                    'y': expense[1]
-                })
+    #         for expense in expenses:
+    #             dataset['data'].append({
+    #                 'x': expense[0].strftime('%Y-%m-%d'),
+    #                 'y': expense[1]
+    #             })
 
-            data['datasets'].append(dataset)
+    #         data['datasets'].append(dataset)
 
-        return data
+    #     return data
 
     def get_yearly_expense_data(self):
         data = {
@@ -117,19 +117,40 @@ class ExpenseChartView(TemplateView):
             data['data'].append(expenses['total_amount'] if expenses['total_amount'] else 0)
 
         return data
+    
+    def payment_data(self):
+        data = {
+            'labels': [],
+            'data': []
+        }
+
+        methods = Tracker.objects.values('payment_method').distinct()
+
+        
+
+        for n in methods:
+            expenses = Tracker.objects.filter(payment_method=n['payment_method']) \
+                                      .aggregate(total_amount=Sum('amount'))
+
+            data['labels'].append(n['payment_method'])
+            data['data'].append(expenses['total_amount'] if expenses['total_amount'] else 0)
+
+        return data
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
       
-        category_trends_data = self.get_category_trends_data()
+        # category_trends_data = self.get_category_trends_data()
         yearly_expense_data = self.get_yearly_expense_data()
         category_expense_data = self.category_expense_data()
+        payment_data = self.payment_data()
 
         
-        context['category_trends_data'] = json.dumps(category_trends_data)
+        # context['category_trends_data'] = json.dumps(category_trends_data)
         context['yearly_expense_data'] = json.dumps(yearly_expense_data)
         context['category_expense_data'] = json.dumps(category_expense_data)
+        context['payment_data'] = json.dumps(payment_data)
 
         return context
 
