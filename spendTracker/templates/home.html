@@ -4,12 +4,16 @@
 
 <div class="flex flex-cols justify-between p-5">
     <div>
-        <h1 class="mb-6 text-3xl font-semibold text-green-800">All Expenses</h1>
+        <h1 class="text-3xl font-semibold text-green-800">All Expenses</h1>
     </div>
     <div>
         <a href="{% url 'create' %}"
            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-            Create New
+           <lord-icon
+           src="https://cdn.lordicon.com/hqymfzvj.json"
+           trigger="hover"
+           style="width:30px;height:25px">
+       </lord-icon>
         </a>
     </div>
 </div>
@@ -35,7 +39,11 @@
             <!-- Update Button -->
             <a href="{% url 'update' expense.pk %}"
                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-2">
-                Update
+               <lord-icon
+               src="https://cdn.lordicon.com/wuvorxbv.json"
+               trigger="hover"
+               style="width:30px;height:25px">
+           </lord-icon>
             </a>
 
             <!-- Delete Button -->
@@ -43,7 +51,11 @@
                 {% csrf_token %}
                 <button type="submit"
                         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                    Delete
+                        <lord-icon
+                        src="https://cdn.lordicon.com/wpyrrmcq.json"
+                        trigger="hover"
+                        style="width:30px;height:25px">
+                    </lord-icon>
                 </button>
             </form>
         </div>
