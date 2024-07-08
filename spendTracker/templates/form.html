@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex flex-cols justify-between p-5">
+    <div>
+        <h1 class="mb-6 text-3xl font-semibold text-green-800">Create New Expense</h1>
+    </div>
+</div>
+
+<div class="bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div class="p-5">
+        <div class="card w-full rounded-xl text-blue-900 font-bold">
+            <div class="p-8 text-md">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="col-span-2">
+                            <label for="title" class="text-md">Expense Title</label>
+                            <input type="text" name="title" id="title"
+                                   class="w-full rounded-xl px-4 py-2 border-2 border-black text-gray-800 text-sm"
+                                   placeholder="Enter Expense Title" required/>
+                           
+                        </div>
+                        <div class="">
+                            <label for="amount" class="text-md">Amount</label>
+                            <input type="number" min="0.01" step="0.01" name="amount" id="amount"
+                                   class="w-full rounded-xl px-4 py-2 border-2 border-black text-gray-800 text-sm"
+                                   placeholder="Enter Amount in BDT" required/>
+                        </div>
+                        <div class="">
+                            <label id="category" for="category" class="text-md">Category</label>
+                            <input type="text" name="category" id="category"
+                                   class="w-full rounded-xl px-4 py-2 border-2 border-black text-gray-800 text-sm"
+                                   placeholder="Enter Category" required/>
+                           
+                        </div>
+                        <div class="">
+                            <label for="date" class="text-md">Expense Date</label>
+                            <input type="date" name="date" id="date"
+                                   class="w-full rounded-xl px-4 py-2 border-2 border-black text-gray-800 text-sm"
+                                   required min="{{ today|date:'Y-m-d' }}"/>
+                        </div>
+                        <div class="">
+                            <label for="payment_method" class="text-md">Payment Method</label>
+                            <select name="payment_method" id="payment_method"
+                                    class="w-full rounded-xl px-4 py-2 border-2 border-black text-gray-800 text-sm"
+                                    required>
+                                <option value="" disabled selected>Select Payment Method</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Credit Card">Credit Card</option>
+                                <option value="Debit Card">Debit Card</option>
+                                <option value="Bank Transfer">Bank Transfer</option>
+                                <option value="Online Payment">Online Payment</option>
+                            
+                            </select>
+                        </div>
+                     
+                        
+                        <input type="text" name="class_code" value="{{ class.code }}" hidden/>
+                        <input type="text" name="action" value="create_expense" hidden/>
+                        <div class="col-span-2">
+                            <button class="w-full py-2 bg-white hover:bg-gray-100 text-black hover:text-primary rounded-lg text-md"
+                                    type="submit">
+                                Create Expense
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

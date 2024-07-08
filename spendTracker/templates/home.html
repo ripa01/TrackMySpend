@@ -2,15 +2,31 @@
 
 {% block content %}
 
-<h1 class="mb-6 text-3xl text-green-800">Your Expenses</h1>
+
+<div class="flex flex-cols justify-between p-5 ">
+   
+    <div>
+        <h1 class="mb-6 text-3xl font-semibold text-green-800">All Expenses</h1>
+    </div>
+        <div > <a href="{% url 'create' %}" 
+            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            Create New
+        </a>
+       
+    </div>
+</div>
+
+
 <div class="bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
     <div class="p-5">
+        <div class="flex justify-end items-end">
         <a href="#"
         class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
         Category
     </a>
+</div>
         <a href="#">
-            <h5 class="mb-3 mt-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">2000 BDT.</h5>
+            <h5 class="mb-3 mt-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">2000 BDT.</h5>
         </a>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
             acquisitions of 2021 so far, in reverse chronological order.</p>

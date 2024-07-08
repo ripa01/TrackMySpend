@@ -8,3 +8,10 @@ class ExpenseListView(ListView):
     context_object_name = 'expenses'
     ordering = ['date']
 
+class ExpenseCreateView(CreateView):
+    model = Tracker
+    context_object_name = 'expenses'
+    fields = ['category','amount','title','date','payment_method']
+    template_name = 'form.html'
+    success_url = '/'      
+
