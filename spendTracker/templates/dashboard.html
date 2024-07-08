@@ -3,25 +3,33 @@
 
 {% block content %}
 
-<div class="grid grid-rows-1 md:grid-rows-2 gap-4">
-    
-<div><h1 class="text-3xl bg-green-300 mb-6 p-3 font-semibold text-green-800 mt-8">Category Trends Over Time</h1>
-<div style="width: 60%; height: 70%; margin: auto;">
-    <canvas id="categoryTrendsChart"></canvas>
-</div> </div>
-<div>
-<h1 class="text-3xl bg-green-300 mb-6 p-3 font-semibold text-green-800 mt-8">Yearly Expense Summary</h1>
-<div style="width: 60%; height: 70%;  margin: auto;">
-    <canvas id="yearlyExpenseChart"></canvas>
-</div>
-</div>
-<div>
-    <h1 class="text-3xl bg-green-300 mb-6 p-3 font-semibold text-green-800 mt-8">Expenses By Category</h1>
-    <div style="width: 60%; height: 70%;  margin: auto;">
-        <canvas id="categoryExpenseChart"></canvas>
+<div class="grid grid-cols-12 gap-4 mt-8">
+    <div class="col-span-5 ">
+        <h1 class="text-3xl bg-green-300 mb-6 p-3 font-semibold text-green-800">Expenses By Category</h1>
+        <div class="chart-wrapper" style="height: calc(90vh - 200px); margin-top: 100px;">
+                <canvas id="categoryExpenseChart"></canvas>
+            </div>
+        
     </div>
+    <div class="col-span-7 grid grid-rows-2 gap-4">
+        <div class="row-span-1">
+            <h1 class="text-3xl bg-green-300 mb-6 p-3 font-semibold text-green-800">Category Trends Over Time</h1>
+        <div class="chart-wrapper" style="height: 35vh; ">
+            <canvas id="categoryTrendsChart"></canvas>
+        </div>
+            
+        </div>
+        <div class="row-span-1">
+            <h1 class="text-3xl bg-green-300 mb-6 p-3 font-semibold text-green-800">Yearly Expense Summary</h1>
+            <div class="chart-wrapper" style="height: 35vh;">
+                <canvas id="yearlyExpenseChart"></canvas>
+            </div>
+            
+        </div>
     </div>
 </div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
