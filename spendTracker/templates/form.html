@@ -11,9 +11,9 @@
     </div>
 </div>
 
-<div class="bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+<div class="bg-green-200 border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
     <div class="p-5">
-        <div class="card w-full rounded-xl text-blue-900 font-bold">
+        <div class="card w-full rounded-xl text-green-800 font-bold">
             <div class="p-8 text-md">
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -57,7 +57,7 @@
                         </div>
                 
                         <div class="col-span-2">
-                            <button class="w-full py-2 bg-white hover:bg-gray-100 text-black hover:text-primary rounded-lg text-md"
+                            <button class="min-w-full py-2 bg-green-500 hover:bg-green-600 text-white  hover:text-primary rounded-lg text-md"
                                     type="submit">
                                 {% if expense.pk %}Update Expense{% else %}Create Expense{% endif %}
                             </button>
@@ -83,11 +83,11 @@
 
         <h5 class="mb-3 mt-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ expense.amount }} BDT.</h5>
 
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ expense.title }}</p>
+        <p class="mb-2 font-normal text-gray-700 dark:text-gray-400">{{ expense.title }}</p>
 
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Payment method : {{ expense.payment_method }}</p>
+        <p class="mb-2 font-normal text-gray-700 dark:text-gray-400"> Payment method : {{ expense.payment_method }}</p>
 
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> Date : {{ expense.date }} </p>
+        <p class="mb-2 font-normal text-gray-700 dark:text-gray-400"> {{ expense.date }} </p>
 
         
     </div>
