@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="grid grid-rows-1 md:grid-rows-2 gap-4">
+    
+<div><h1 class="text-3xl bg-green-300 mb-6 p-3 font-semibold text-green-800 mt-8">Category Trends Over Time</h1>
+<div style="width: 60%; height: 70%; margin: auto;">
+    <canvas id="categoryTrendsChart"></canvas>
+</div> </div>
+<div>
+<h1 class="text-3xl bg-green-300 mb-6 p-3 font-semibold text-green-800 mt-8">Yearly Expense Summary</h1>
+<div style="width: 60%; height: 70%;  margin: auto;">
+    <canvas id="yearlyExpenseChart"></canvas>
+</div>
+</div>
+<div>
+    <h1 class="text-3xl bg-green-300 mb-6 p-3 font-semibold text-green-800 mt-8">Expenses By Category</h1>
+    <div style="width: 60%; height: 70%;  margin: auto;">
+        <canvas id="categoryExpenseChart"></canvas>
+    </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+
+        // Category Trends Over Time (Line Chart)
+        var categoryTrendsCtx = document.getElementById('categoryTrendsChart').getContext('2d');
+        var categoryTrendsData = JSON.parse("{{ category_trends_data|escapejs }}");
+
+        var categoryTrendsChart = new Chart(categoryTrendsCtx, {
+            type: 'line',
+            data: categoryTrendsData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        type: 'time',
+                        time: {
+                            unit: 'month',
+                            displayFormats: {
+                                month: 'MMM YYYY'
+                            }
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Date'
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Amount'
+                        }
+                    }]
+                }
+            }
+        });
+
+        // Yearly Expense Data
+        var yearlyExpenseCtx = document.getElementById('yearlyExpenseChart').getContext('2d');
+        var yearlyExpenseData = JSON.parse("{{ yearly_expense_data|escapejs }}");
+
+        var yearlyExpenseChart = new Chart(yearlyExpenseCtx, {
+            type: 'bar',
+            data: {
+                labels: yearlyExpenseData.labels,
+                datasets: [{
+                    label: 'Yearly Expense Summary',
+                    data: yearlyExpenseData.data,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        // Yearly Expense Data
+        var categoryExpenseCtx = document.getElementById('categoryExpenseChart').getContext('2d');
+        var categoryExpenseData = JSON.parse("{{ category_expense_data|escapejs }}");
+
+        var categoryExpenseChart = new Chart(categoryExpenseCtx, {
+            type: 'pie',
+            data: {
+                labels: categoryExpenseData.labels,
+                datasets: [{
+                    data: categoryExpenseData.data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+        });
+    });
+
+</script>
+{% endblock %}
