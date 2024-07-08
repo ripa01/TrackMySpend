@@ -98,6 +98,25 @@ class ExpenseChartView(TemplateView):
             data['data'].append(expenses['total_amount'] if expenses['total_amount'] else 0)
 
         return data
+    
+    def category_expense_data(self):
+        data = {
+            'labels': [],
+            'data': []
+        }
+
+        categories = Tracker.objects.values('category').distinct()
+
+        
+
+        for n in categories:
+            expenses = Tracker.objects.filter(category=n['category']) \
+                                      .aggregate(total_amount=Sum('amount'))
+
+            data['labels'].append(n['category'])
+            data['data'].append(expenses['total_amount'] if expenses['total_amount'] else 0)
+
+        return data
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -105,10 +124,12 @@ class ExpenseChartView(TemplateView):
       
         category_trends_data = self.get_category_trends_data()
         yearly_expense_data = self.get_yearly_expense_data()
+        category_expense_data = self.category_expense_data()
 
         
         context['category_trends_data'] = json.dumps(category_trends_data)
         context['yearly_expense_data'] = json.dumps(yearly_expense_data)
+        context['category_expense_data'] = json.dumps(category_expense_data)
 
         return context
 
