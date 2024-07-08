@@ -7,6 +7,7 @@ class ExpenseListView(ListView):
     template_name = 'home.html' 
     context_object_name = 'expenses'
     ordering = ['date']
+    paginate_by = 10
 
 class ExpenseCreateView(CreateView):
     model = Tracker
