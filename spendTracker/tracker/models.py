@@ -7,7 +7,7 @@ class Tracker(models.Model):
     category = models.CharField(max_length=100)
     amount = models.IntegerField()
     title = models.TextField()
-    date = models.DateTimeField(default=timezone.now)
+    date = models.DateField()
     payment_method = models.CharField(max_length=50, choices=[
         ('Cash', 'Cash'), 
         ('Credit Card', 'Credit Card'), 
@@ -18,6 +18,13 @@ class Tracker(models.Model):
 
     def __str__(self):
         return self.category
+    
+
+    def get_absolute_url(self):
+        return reverse('update', kwargs={'pk': self.pk})
+
+    
+
 
     
 

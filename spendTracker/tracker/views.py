@@ -13,5 +13,14 @@ class ExpenseCreateView(CreateView):
     context_object_name = 'expenses'
     fields = ['category','amount','title','date','payment_method']
     template_name = 'form.html'
-    success_url = '/'      
+    success_url = '/'    
+
+class ExpenseUpdateView(UpdateView):
+    model = Tracker
+    context_object_name = 'expense'
+    fields = ['category','amount','title','date','payment_method']
+    template_name = 'form.html'
+    success_url = '/'    
+
+
 
