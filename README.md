@@ -7,6 +7,22 @@ This project is an Expense Tracker application built with Django, Tailwind CSS, 
 - **Home Page**: Lists expenses with pagination and includes a form to add new expenses.
 - **Expense Form**: Allows users to add, update or delete expenses.
 - **Dashboard**: Displays yearly expense summaries, expenses by category, and expenses by payment method using Chart.js.
+- **Calculator Page:** Provides an interface for users to calculate and manage their expenses efficiently.
+
+Here are some screenshots to give a visual representation of the application:
+
+#### Home Page
+![Home Page](spendTracker/media/home.png)
+
+#### Expense Form 
+![Expense Form](spendTracker/media/create.png)
+
+#### Dashboard
+![Dashboard](spendTracker/media/board.png)
+
+#### Calculator Page
+![Calculator Page](spendTracker/media/calculator.png)
+
 
 ### Installation
 
