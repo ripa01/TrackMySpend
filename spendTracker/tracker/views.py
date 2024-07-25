@@ -1,6 +1,6 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Tracker
+from .models import *
 from django.views.generic import TemplateView
 from django.db.models import Sum
 from datetime import datetime
@@ -24,7 +24,15 @@ class ExpenseCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['recent_expenses'] = Tracker.objects.order_by('-date')[:3]
         return context
+
+class Calculator(TemplateView):
+    template_name = 'calculator.html'
     
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['recent_expenses'] = Tracker.objects.order_by('-date')[:3]
+        return context    
 
 
 

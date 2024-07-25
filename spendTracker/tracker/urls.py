@@ -9,6 +9,7 @@ urlpatterns = [
     path('update/<int:pk>/', ExpenseUpdateView.as_view(), name='update'),
     path('delete/<int:pk>/', ExpenseDeleteView.as_view(), name='delete'),
     path('dashboard', ExpenseChartView.as_view(), name='dashboard'),
+    path('calculator', Calculator.as_view(), name='calculator'),
     
 ]
 
