@@ -1,6 +1,6 @@
 # TrackMySpend
 
-This project is an Expense Tracker application built with Django, Tailwind CSS, Flowbite, Lordicon, and Chart.js. It allows users to  update, delete and view their expenses categorized by various types and payment methods. Users can also visualize their expense data through interactive charts.
+This project is an Expense Tracker application built with Django, Tailwind CSS, Flowbite, Lordicon, and Chart.js. It allows users to  update, delete and view their expenses categorized by various types and payment methods. Users can visualize their expense data through interactive charts and also provides an interface for users to calculate and manage their expenses efficiently.
 
 ### Project Overview
 
